@@ -66,7 +66,7 @@ class GetEconomicalData
     file_data = GetNetData.new("#{domain}","#{path}","off").get_economic
     file_data.each{|line|
       if RUBY_PLATFORM != "i386-mingw32"
-        line = line.sub("","")
+        line = line.sub("","")
       end
       f.printf("%s",line)
     }
