@@ -14,7 +14,7 @@ require 'sqlite3'
 class HistoricalViewer
 
   def initialize(db_dir,db_list)
-    @result_dir = "/home/koji/FX/MyTool/result"
+    @result_dir = "../../result"
     @db_dir = db_dir
     @db_list = db_list
   end
