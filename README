@@ -1,0 +1,16 @@
+#
+# README
+#
+#   Project : FXAnalyzer
+#   Author  : Koji HIJIKURO<koji0903@gmail.com>
+#
+
+
+Operation
+
+ 1.Get Historical Data from WebSite. (ex:USD/JPY)
+ 2.Analyze Hisotrical Data and Original DataBase
+ 3.Generate Analyzed Data ( Txt/CSV ), and Graph.
+
+### END ####
+
