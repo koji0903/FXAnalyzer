@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ##########################################
 # 
-# Historical
+# FXAnalyzer
 #  - Get Historical CSV Data from Internet
 #  - Make Historical Database
 #
