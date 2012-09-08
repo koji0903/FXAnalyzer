@@ -1,8 +1,7 @@
 #!/bin/sh
 
-BASE=/home/koji/FX/MyTool/FXAnalyze
-VER=${BASE}/trunk
-FX=${VER}/bin/FXView.rb
+BASE=../apps
+FX=${BASE}/bin/FXView.rb
 
 ########
 # EXE

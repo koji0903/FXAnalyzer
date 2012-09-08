@@ -22,8 +22,8 @@ class FXAnalyzer
     if RUBY_PLATFORM == "i386-mingw32"
       @tmp_dir = "../../../../tmp"
     else
-#      @tmp_dir = "/home/koji/FX/tmp"
-      @tmp_dir = "../../net_data"
+#      @tmp_dir = "/home/koji/workspace/FX/tmp"
+      @tmp_dir = "/home/koji/workspace/FX/net_data"
     end
     Dir::mkdir("#{@tmp_dir}") if !File.exist?("#{@tmp_dir}")
   end

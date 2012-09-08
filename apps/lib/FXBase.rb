@@ -11,7 +11,7 @@ module FXBase
       db_dir = "../../../../FX_DB"
     else
 #      db_dir = "/home/koji/FX/FX_DB"
-      db_dir = "../../db"
+      db_dir = "/home/koji/workspace/FX/db"
     end
     # Historical Data ["CSVFileName","PHPSelectNumber","DBFileName"]
     db_list = {
@@ -26,7 +26,7 @@ module FXBase
       "GBP/JPY" => ["gbpjpy.csv",6, "fx_gbpjpy.db","GBPJPY.csv"],
       "HKD/JPY" => ["hkdjpy.csv",7, "fx_hkdjpy.db","HKDJPY.csv"],
       "ZAR/JPY" => ["zarjpy.csv",8, "fx_zarjpy.db","ZARJPY.csv"],
-    }    
+    }
     return db_dir,db_list
   end
 

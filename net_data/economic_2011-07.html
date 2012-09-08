@@ -1,0 +1,622 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP" />
+
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+
+<meta name="keywords" content="fx,外国為替,指標,カレンダー,経済" />
+
+<meta name="description" content="外国為替(FX)に関する経済指標の予想と結果をカレンダー形式でお伝えしています。" />
+
+<title>経済カレンダー - 外国為替（FX）マーケット情報  - マネースクウェア・ジャパン</title>
+
+<link rel="stylesheet" type="text/css" href="/common/css/base.css" />
+
+<link rel="stylesheet" type="text/css" href="/common/css/style.css" />
+
+<link rel="stylesheet" type="text/css" href="/market/css/market.css" />
+
+<script src="/common/js/jquery.js" type="text/javascript"></script>
+
+
+
+<!-- footer parallax -->
+
+<script src="/common/js/jquery-1.2.6.min.js" type="text/javascript"></script>
+
+<script src="/common/js/jquery.dimensions.js" type="text/javascript"></script>
+
+<script src="/common/js/jquery.jparallax.js" type="text/javascript"></script>
+
+<script src="/common/js/iepngfix_tilebg.js" type="text/javascript"></script>
+
+<link rel="stylesheet" type="text/css" href="/common/css/footer.css" />
+
+<script type="text/javascript">
+
+jQuery(document).ready(function(){
+
+jQuery('#parallax').jparallax({});
+
+jQuery('#parallax2').jparallax({});
+
+});
+
+</script>
+
+<style type="text/css">
+
+img, div { behavior: url("/common/js/iepngfix.htc") }
+
+</style>
+
+<!-- footer parallax -->
+
+
+
+<!-- jquery.corner -->
+
+<script src="/common/js/jquery.corner.js" type="text/javascript"></script>
+
+<script src="/common/js/corner.js" type="text/javascript"></script>
+
+<!-- jquery.corner -->
+
+
+
+<script src="/common/js/AC_RunActiveContent.js" type="text/javascript"></script>
+
+
+
+<!-- Google Analytics Start-->
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+
+  _gaq.push(['_setAccount', 'UA-4079204-1']);
+
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+
+  })();
+
+</script>
+
+<!-- Google Analytics End-->
+
+
+
+
+
+
+      
+<style type="text/css">
+.important1 {
+	color: #000;
+}
+.important2 {
+	color: #00f;
+}
+.important3 {
+	color: #f00;
+}
+</style>
+
+
+
+  <link rel="alternate" type="application/rss+xml" title="経済カレンダー" href="http://feeds.m2j.co.jp/m2j/calendar">
+
+  </head>
+
+<body>
+<div id="wrapper" class="corner">
+
+<div id="header" class="clearfix">
+<h1>FXは、運より運用だ。マネーすくすく マネースクウェア・ジャパン</h1>
+<p class="title"><a href="/" name="pagetop" id="pagetop">
+  <img src="/common/images/title_header.gif" alt="マネースクウェア・ジャパン　コーポレートロゴ" width="312" height="40" />
+</a></p>
+<ul class="sub_menu">
+<li><a href="/info/attention.php">お取引に当たっての注意事項</a></li>
+<li><a href="/info/sitemap.php">サイトマップ</a></li>
+</ul>
+<p class="jasdaq">
+	<span id="loginbtn"><a href="https://www.m2j.co.jp/mp_login/">マイページログイン</a></span>
+	<img src="/common/images/mark_jasdaq.png" alt="JASDAQ" width="200" height="30" />  
+</p>
+
+  <form action="http://search.m2j.co.jp/">
+  <p class="search">
+  <input id="searchWord" name="q" type="text" value="" class="box" />
+  <a href="#" onclick="document.forms[0].submit();" onkeypress="document.forms[0].submit();"><img src="/common/images/icon_search.gif" alt="サイト内検索" class="btn" width="23" height="24" /></a>
+  </p></form>
+
+<div class="clear"></div>
+<ul id="global_navi" class="clearfix">
+<li id="gnavi_beginner" class="left"><a href="/beginner/">はじめての方へ</a></li>
+<li id="gnavi_toraripi"><a href="/toraripi/">はじめてのトラリピ</a></li>
+<li id="gnavi_guide"><a href="/guide/">商品・サービス</a></li>
+<li id="gnavi_m2jpoint"><a href="/m2jpoint/">Ｍ２Ｊポイント</a></li>
+<li id="gnavi_campaign"><a href="/campaign/">キャンペーン情報</a></li>
+<li id="gnavi_support"><a href="/support/">お客様サポート</a></li>
+<li id="gnavi_company" class="right"><a href="/company/">会社情報・IR</a></li>
+</ul>
+</div><!--header -->
+
+<ul id="topic_path">
+<li><a href="../">トップ</a></li>
+<li><a href="./">マーケット情報</a></li>
+<li>経済カレンダー</li>
+</ul>
+
+<div id="contents" class="clearfix">
+<!-- *** -->
+
+<div id="sub_contents">
+	
+<div class="sub_btn_2">
+<p id="bt02"><a href="https://www.m2j.co.jp/account/">
+<img src="/common/images/btn_open_account.png" alt="口座開設" width="190" height="100" /></a></p>
+<p id="bt01"><a href="https://www.toraripifx.com/?p=home_vt&adid=hp0086" target="_blank">
+<img src="/common/images/btn_entry_member.png" alt="会員登録" width="190" height="50" /></a></p>
+</div>    <div class="sub_menu">
+
+<div class="inner">
+
+
+
+<h3><a href="/market/">
+
+	<img src="/market/images/h3_sub_menu_market.gif" alt="マーケット情報"></a>
+
+</h3>
+
+
+
+<div class="ultitle">レポート</div>
+
+<ul>
+
+<li><a href="/market/yoshida_weekly.php">吉田 恒スペシャルレポート</a></li>
+
+<li><a href="/market/2min_fxreport01.php">2分でわかるアメリカ</a></li>
+
+<li><a href="/market/oceania_report.php">オセアニアレポート</a></li>
+
+<li><a href="/market/european_report.php">ヨーロッパ通貨レポート</a>
+<span style="color:#ffffff; background-color:#C03; text-align:center; margin:0px 4px 3px 0px; width:40px; padding:0px 2px">NEW</span></li>
+
+<li><a href="/market/azakare_watch.php">比嘉の週刊アザカレウォッチ</a></li>
+
+</ul>
+
+
+
+<div class="ultitle">最新マーケット情報</div>
+
+<ul>
+
+<li><a href="/market/fxnews.php">外国為替・FXニュース</a></li>
+
+<li><a href="/market/fx_chart.php">FXチャート</a></li>
+
+</ul>
+
+
+
+<div class="ultitle">経済指標・価格データ</div>
+
+<ul>
+
+<li><a href="/market/calendar.php">経済カレンダー</a></li>
+
+<li><a href="/market/rate_policy.php">政策金利データ</a></li>
+
+<li><a href="/market/historical.php">ヒストリカルデータ</a></li>
+
+</ul>
+
+
+
+<div class="ultitle">トレード参考データ</div>
+
+<ul>
+
+<li><a href="/market/bullbear.php">Ｍ２Ｊぶるべあマトリックス</a></li>
+
+<li><a href="/market/range.php">主要指標</a></li>
+
+<li><a href="/market/repeat.php">みんなのリピート</a></li>
+
+</ul>
+
+
+<!--inner --></div>
+
+<!--sub_menu --></div>
+
+	<ul class="banner">
+	<!--<li><a href="#" target="#"><img src="#" /></a></li>-->
+	<li>
+<div class="media_info">
+<h3>注目コンテンツ</h3>
+<div class="inner">
+
+<p>
+<a target="blank" href="http://ameblo.jp/m2j-aiba ">
+<img width="180" height="72" alt="М２Ｊ社長相葉のブログ" src="/images_update/bn_aibablog.jpg"></a>
+</p>
+    
+<p>
+<a href="/info/yoshida_contents/">
+<img width="180" height="50" alt="ＦＸアカデミア学長吉田恒の情報コンテンツのご案内" src="/images_update/bn_yoshida_power.gif"></a>
+</p>
+    
+</div><!--/inner End -->
+</div><!--/media_info End -->
+</li>
+
+
+
+<li>
+<div class="media_info">
+<h3>情報コンテンツ</h3>
+
+<div class="inner">
+
+<p>
+<a href="/market/">
+<img src="/common/images/banner_market.jpg" alt="マーケット情報" width="180" height="72" /></a>
+</p>
+
+<p>
+<a href="/seminar/">
+<img src="/common/images/banner_seminar.jpg" alt="FXセミナー・動画"  width="180" height="72" /></a>
+</p>
+
+<p><a href="/sukusuku/">
+<img src="/common/images/banner_sukusuku.jpg" alt="マネーすくすく" width="180" height="72" /></a>
+</p>
+
+<p><a href="/fxoshaberi/activity">
+<img src="/images_update/bn_fxoshaberi.gif" alt="FXdeおしゃべり！" width="180" height="72" /></a>
+</p>
+
+<p><a href="/landing/seminarmail_201111/">
+<img src="/images_update/bn_seminarmail.gif" alt="セミナーメルマガ" width="180" height="72" /></a>
+</p>
+
+</div><!--/inner End -->
+</div><!--/media_info End -->
+</li>
+
+
+
+<li>
+<div class="media_info">
+<h3>ソーシャルメディアはこちら。</h3>
+
+<div class="inner">
+
+<p>
+<a href="https://www.toraripifx.com/twitter.php" target="_blank">
+<img src="/images_update/bn_toraripi_twitter03.gif" alt="トラリピくんのtwitterはこちら" width="180" height="50" /></a>
+</p>
+
+<p>
+<a href="http://www.facebook.com/toraripi" target="blank">
+<img src="/images_update/bn_toraripi_facebook.gif" alt="トラリピくんのfacebookはこちら" width="180" height="50" /></a>
+</p>
+
+<p>
+<a target="blank" href="http://www.m2j.co.jp/landing/toraripi_song/ ">
+<img width="180" height="50" alt="トラリピのうた" src="/images_update/bn_toraripi_song.gif"></a>
+</p>
+</div><!--/inner End -->
+</div><!--/media_info End -->
+</li>
+
+	</ul>
+</div><!--sub_contents -->
+
+<div id="main_contents">
+
+<h2>経済カレンダー(日別表示)</h2>
+
+            
+
+<h4 class="market_subtitleList">
+2011/07/(木)の経済指標
+</h4>
+<div align="right"><a href="./calendar.php"><img src="./images/calen_d.gif" style="margin-right:5px;"></a><a href="./calendar_w.php"><img src="./images/calen_w.gif" style="margin-right:5px;"></a><a href="./calendar_m.php"><img src="./images/calen_m.gif"></a></div>
+
+<p>
+<a href="http://feeds.m2j.co.jp/m2j/calendar">
+<img alt="rss" src="../common/images/rss.gif" style="margin-right:5px;"></a>
+<a href="http://feeds.m2j.co.jp/m2j/calendar">本日のイベントをRSSで。</a>
+</p>    
+
+<ul class="pagenation">
+<li class="row"><a style="text-decoration:none;" href="?yy=2011&mm=06&dd=29"><b>←前日</b></a></li>
+<li class="forw"><a style="text-decoration:none;" href="?yy=2011&mm=07&dd=01"><b>翌日→</b></a></li>
+</ul>
+<br>
+
+
+      <table id="ecn_calendar" class="dataTable">
+
+      	<thead>
+
+          <tr>
+
+            <th class="day">日付</th>
+            <th class="time">時間</th>
+            <th class="important">重要度</th>
+            <th class="country">国</th>
+            <th class="announce">発表[前回数値]</th>
+            <th class="expectation">予想</th>
+            <th class="expectation">結果</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+      
+
+
+        </tbody>
+
+      </table>     
+
+<ul class="pagenation">
+<li class="row"><a style="text-decoration:none;" href="?yy=2011&mm=06&dd=29"><b>←前日</b></a></li>
+<li class="forw"><a style="text-decoration:none;" href="?yy=2011&mm=07&dd=01"><b>翌日→</b></a></li>
+</ul>
+<br>
+<p class="font_Smaller">
+※重要度の項目では、トラリピくんの表示（最大3つ）が多いほどその経済指標の重要度が高いことを示していますが、こちらは当社独自の基準にて掲載しているものであり、客観的なデータや公式な基準等によるものではございません。<br>
+<br>
+※掲載されているデータ・情報については、万全を期しておりますが、その正確性・安全性等を保証するものではありません。また、掲載されているデータ・情報等は、作成時点におけるものであり、当社は予告なくこれを変更・訂正することがあります。</p>
+
+
+
+<!-- end mainarea -->
+
+</div>
+
+  </div>  
+
+  <!-- End wrapper box area -->
+
+</div><!--main_contents -->
+</div><!--contents -->
+</div><!--wrapper -->
+
+<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="/common/css/ipad.css" type="text/css" />
+
+<div id="footer_caution" class="corner">
+
+<ul class="bnr clearfix">
+
+<li><a href="http://www.fsa.go.jp/" target="_blank" rel="nofollow"><img src="/common/images/bnr_foot_01.gif" alt="fsa" width="200" height="37" /></a></li>
+
+<li><a href="http://www.ose.or.jp/jasdaq" target="_blank" rel="nofollow"><img src="/common/images/bnr_foot_02.gif" alt="jasdaq" width="200" height="37" /></a></li>
+
+<li><a href="http://www.ffaj.or.jp/" target="_blank" rel="nofollow"><img src="/common/images/bnr_foot_03.gif" alt="ffaj" width="200" height="37" /></a></li>
+
+<li><a href="http://www.finmac.or.jp/" target="_blank" rel="nofollow"><img src="/common/images/bnr_foot_04.gif" alt="finmac" width="200" height="37" /></a></li>
+
+</ul>
+
+
+
+<hr />
+
+
+
+<h3>注文手法に関しての注意事項</h3>
+<p>注文手法である『トラップトレード&reg;』『リピートイフダン&reg;』『トラップリピートイフダン&reg;』『ダブルリピートイフダン&reg;』は取引の利益を保証するものではありません。投資判断はお客様ご自身でなさっていただきますようお願いいたします。</p>
+<p>同一通貨ペアで複数の『ダブルリピートイフダン&reg;』を入れる、またはすでにポジションを持っている通貨ペアで新たに『ダブルリピートイフダン&reg;』を注文すると両建て取引となることがありますのでご注意ください。</p>
+<hr />
+
+<h3>お取引に関しての注意事項</h3>
+
+<ul style="margin-left: 15px;">
+<li><span>
+取引開始にあたっては契約締結前書面をよくお読みになり、リスク・取引等の内容をご理解いただいた上で、ご自身の判断にてお願いいたします。当社の外国為替証拠金取引は、元本および収益が保証されているものではありません。また、取引総代金に比較して少額の資金でお取引を行うため、多額の利益となることもありますが、通貨価格の変動や金利動向の変化により預託した資金以上の損失が生じる可能性があります。また、外貨事情の急変、外国為替市場の閉鎖等、不可抗力と認められる事由により外国為替取引が不能となる可能性があります。</span></li>
+
+<li><span>取引手数料は価格上乗せ方式で、新規および決済取引のそれぞれに必要となります。手数料額は1,000通貨単位当たり10〜100円（対ドル通貨は0.1〜1ドル）で、通貨ペア及び諸条件により異なります。</span></li>
+
+<li><span>当社が提示するレートは、通常２〜８ポイント買値と売値に差があります。</span></li>
+
+<li><span>取引に必要な証拠金額は、個人のお客様の場合取引総代金の４％、法人のお客様の場合取引総代金の２％となります。</span></li>
+</ul>
+
+
+
+<hr />
+
+
+
+<p>株式会社マネースクウェア・ジャパン<br />
+
+金融商品取引業　関東財務局長(金商) 第296号 一般社団法人金融先物取引業協会 会員番号1507　JASDAQ 証券コード：8728 </p>
+
+
+
+</div>
+
+
+
+<div id="footer">
+
+<div class="inner">
+
+<img src="/common/images/title_footer.gif" alt="" class="left" width="263" height="140" />
+
+<a href="http://privacymark.jp/ " target="_blank" rel="nofollow"><img src="/common/images/mark_privacy.gif" alt="" class="mark_privacy" width="83" height="87" /></a>
+
+<ul>
+<li><a href="http://www.m2j.co.jp/beginner/">はじめての方へ</a></li>
+<li><a href="http://www.m2j.co.jp/fx_beginner/">はじめてのFX</a></li>
+<li><a href="http://www.m2j.co.jp/toraripi/">はじめてのトラリピ</a></li>
+<li><a href="http://www.m2j.co.jp/guide/">商品・サービス</a></li>
+<li><a href="http://www.m2j.co.jp/m2jpoint/">Ｍ２Ｊポイント</a></li>
+<li><a href="http://www.m2j.co.jp/campaign/">キャンペーン情報</a></li>
+<li><a href="http://www.m2j.co.jp/company/">会社情報・IR</a></li>
+</ul>
+
+<ul>
+<li><a href="/support/">お客様サポート</a>
+  <ul>
+  <li><a href="http://faq.m2j.co.jp/EokpControl?&event=TE0008">よくある質問</a></li>
+  <li><a href="http://faq.m2j.co.jp/EokpControl?&event=CE0002&cid=10318">用語集</a></li>
+  </ul>
+</li>
+
+<li><a href="http://www.m2j.co.jp/corporate/">法人のお客様</a></li>
+<li><a href="https://www.m2j.co.jp/3million/">スリーミリオン倶楽部</a></li>
+<li><a href="http://www.m2j.co.jp/market/">マーケット情報</a></li>
+<li><a href="http://www.m2j.co.jp/seminar/">Ｍ２Ｊ ＦＸセミナー・動画</a></li>
+<li><a href="http://www.m2j.co.jp/sukusuku/">マネーすくすく</a></li>
+<li><a href="https://www.toraripifx.com/" target="_blank">トラリピＦＸバーチャル</a></li>
+</ul>
+
+<ul>
+<li>ご確認ください
+  <ul>
+  <li><a href="/info/important.php">FXのリスクについて</a></li>
+  <li><a href="/support/report_finalreturn.php">FXの確定申告について</a></li>
+  <li><a href="/info/fault.php">システム障害時の対応について</a></li>
+  <li><a href="/info/invite_policy.php">投資勧誘方針</a></li>
+  <li><a href="/info/antisocial.php">反社会的勢力との<br />関係遮断に関する基本方針</a></li>
+  <li><a href="/info/privacy.php">プライバシーポリシー</a></li>
+  <li><a href="/info/complaints.php">苦情・紛争の受付窓口</a></li>
+  <li><a href="/info/compliancepolicy.php">コンプライアンス・ポリシー</a></li>
+  <li><a href="/info/site_policy.php">サイトポリシー</a></li>
+  <li><a href="/info/socialmedia_policy.php">ソーシャルメディアポリシー</a></li>
+  </ul>
+  </li>
+</ul>
+
+</div><!--inner -->
+</div><!--footer -->
+
+
+
+<!--sidenavi -->
+
+<script src="/common/js/jquery.sidenavi.js" type="text/javascript"></script>
+
+<!--sidenavi-->
+
+
+
+<!--parallax -->
+<script type="text/javascript">
+$(document).ready(function(){
+$("#parallax").jparallax({});
+});
+</script>
+
+<div id="parallax">
+<div class="parallax1"><img src="/common/images/images_footer_city01.png" alt="img" class="footer_img1" /></div>
+<div class="parallax2"><img src="/common/images/images_footer_city02.png" alt="img" class="footer_img2" /></div>
+</div>
+<!--/parallax -->
+
+
+
+<p class="image clear"></p>
+
+<div class="footer_bottom">
+
+<div class="footer_textarea">
+
+<div class="inner"><p class="copy">FXは、運より運用だ。  マネーすくすく　マネースクウェア・ジャパン <br />
+
+Copyright (C) <script type='text/javascript'>myDate = new Date();myYear = myDate.getFullYear();document.write(myYear);</script> MONEY SQUARE JAPAN, INC. All rights reserved.</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ac cruiser Start-->
+
+<script type="text/javascript" language="JavaScript"> 
+
+<!--
+
+   var _cid = 8010;
+
+   var _entry_js = '//tracer.a-cast.jp/entry.js?cid='; 
+
+   var _proto = window.location.protocol; 
+
+   if (_proto != 'http:' && _proto != 'https:') { 
+
+      _proto = 'http:'; 
+
+   }  
+
+   document.write('<scr' + 'ipt type="text/javascript" ' 
+
+      + 'language="JavaScript" src="' 
+
+      + _proto + _entry_js + _cid + '" ></' + 'scr' + 'ipt>'); 
+
+//-->
+
+</script>
+
+<!-- ac cruiser End-->
+<!-- ADNETWORK by RAO リターゲティングタグ配信用 開始 -->
+<script type="text/javascript">
+document.writeln('<sc'+'ript language="JavaScript" type="text/javascript" src="'+location.protocol+'//cdn.c-team.jp/ran/c/money-square/money-square.js"></sc'+'ript>');
+</script>
+<!-- ADNETWORK by RAO リターゲティングタグ配信用 終了 -->
+
+
+<!-- Google Code for market_201109~ Remarketing List -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1028916351;
+var google_conversion_language = "en";
+var google_conversion_format = "3";
+var google_conversion_color = "666666";
+var google_conversion_label = "SXARCMmSoAIQ_4jQ6gM";
+var google_conversion_value = 0;
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1028916351/?label=SXARCMmSoAIQ_4jQ6gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+
+<!-- Retargeting 20111212-->
+<script type="text/javascript" src="http://cf.eco-tag.jp/perfx/pix-money-min.js"></script>
+</body>
+</html>
