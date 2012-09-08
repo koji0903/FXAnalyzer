@@ -11,7 +11,7 @@ module FXBase
       db_dir = "../../../../FX_DB"
     else
 #      db_dir = "/home/koji/FX/FX_DB"
-      db_dir = "/home/koji/workspace/FX/db"
+      db_dir = "/home/koji/workspace/FXAnalyzer/db"
     end
     # Historical Data ["CSVFileName","PHPSelectNumber","DBFileName"]
     db_list = {

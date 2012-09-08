@@ -23,7 +23,7 @@ class FXAnalyzer
       @tmp_dir = "../../../../tmp"
     else
 #      @tmp_dir = "/home/koji/workspace/FX/tmp"
-      @tmp_dir = "/home/koji/workspace/FX/net_data"
+      @tmp_dir = "/home/koji/workspace/FXAnalyzer/net_data"
     end
     Dir::mkdir("#{@tmp_dir}") if !File.exist?("#{@tmp_dir}")
   end

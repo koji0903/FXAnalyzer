@@ -15,7 +15,7 @@ require 'Graph'
 class HistoricalViewer
 
   def initialize(db_dir,db_list)
-    @result_dir = "/home/koji/workspace/FX/result"
+    @result_dir = "/home/koji/workspace/FXAnalyzer/result"
     @db_dir = db_dir
     @db_list = db_list
   end

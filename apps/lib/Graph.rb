@@ -6,7 +6,7 @@ require 'gruff'
 class MyGraph
   def initialize(inf)
     # Output PNG file name
-    @out_file = "/home/koji/workspace/FX/result/image/" + inf[:file]
+    @out_file = "/home/koji/workspace/FXAnalyzer/result/image/" + inf[:file]
     # The title of Graph
     @Title = inf[:title]
     
