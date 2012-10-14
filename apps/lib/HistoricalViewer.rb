@@ -268,9 +268,9 @@ class HistoricalViewer
 #AnalyzeData:each_data[9]*100
 #ChangeVlalue:each_data[11]
 #Differ:(each_data[4]-each_data[11]).abs
-       make_Value(data,category,value)
+#       make_Value(data,category,value)
        make_EMA(data,category,value)
-       make_Judge(data,category,value)
+#       make_Judge(data,category,value)
 
     end
   end
