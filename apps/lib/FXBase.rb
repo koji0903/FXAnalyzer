@@ -13,6 +13,7 @@ module FXBase
 #      db_dir = "/home/koji/FX/FX_DB"
       db_dir = "/home/koji/workspace/FXAnalyzer/db"
     end
+
     # Historical Data ["CSVFileName","PHPSelectNumber","DBFileName"]
     db_list = {
       "USD/JPY" => ["usdjpy.csv",1, "fx_usdjpy.db","USDJPY.csv"],
@@ -28,6 +29,7 @@ module FXBase
       "ZAR/JPY" => ["zarjpy.csv",8, "fx_zarjpy.db","ZARJPY.csv"],
     }
     return db_dir,db_list
+
   end
 
   # TurningValue : Trade(Short/Long)が変わる値
