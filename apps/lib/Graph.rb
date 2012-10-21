@@ -22,7 +22,7 @@ class MyGraph
     when "AUD/USD","EUR/USD","NZD/USD"
  #     @g.y_axis_increment = 0.1
     else
-      @g.y_axis_increment = 1
+#      @g.y_axis_increment = 1
     end
     @g.x_axis_label = "Date"
     @g.y_axis_label = "Value"
@@ -60,7 +60,7 @@ class MyGraph
      rescue => ex
        p ex.message
        p @out_file
-       p @g
+ #      p @g
        p "@internal error."
        exit
      end

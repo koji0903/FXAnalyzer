@@ -26,6 +26,11 @@ class HistoricalViewer
   end
 
   private
+  def getLast100DaysData(db,table)
+    return db.execute("SELECT * FROM #{table} ORDER BY ROWID DESC LIMIT 300;")
+  end
+
+  private
   def getLast10DaysData(db,table)
     return db.execute("SELECT * FROM #{table} ORDER BY ROWID DESC LIMIT 10;")
   end
@@ -271,6 +276,8 @@ class HistoricalViewer
 #       make_Value(data,category,value)
        make_EMA(data,category,value)
 #       make_Judge(data,category,value)
+      data = getLast100DaysData(db,"historical")
+       make_EMA_long(data,category,value)
 
     end
   end
@@ -348,6 +355,50 @@ class HistoricalViewer
       end
       
       out_file = value[0].sub(".csv","_EMA.png")
+      gruff_data = Hash.new
+      gruff_data["End Value"] = end_value
+      gruff_data["High Value"] = high_value
+      gruff_data["Low Value"] = low_value
+      gruff_data["EMA12"] = ema12_value
+      gruff_data["EMA26"] = ema26_value
+
+       # Make Graph
+      graph = MyGraph.new( :file => out_file,
+                           :title => category,
+                           :data => gruff_data,
+                           :label => data_value
+                              )
+    
+      graph.add_data
+      graph.add_title
+      graph.generate
+  end
+
+  def make_EMA_long(data,category,value)
+      data_value = Hash.new
+      end_value = Array.new
+      high_value = Array.new
+      low_value = Array.new
+      ema12_value = Array.new
+      ema26_value = Array.new
+      
+
+      i = 0
+      data.sort_by do |each_data|
+        each_data[0]
+      end.each do |each_data|
+        end_value << ('%.4f' % each_data[4]).to_f
+        high_value << ('%.4f' % each_data[2]).to_f
+        low_value << ('%.4f' % each_data[3]).to_f
+        ema12_value << ('%.4f' % each_data[5]).to_f
+        ema26_value << ('%.4f' % each_data[6]).to_f
+        if i%5 == 4
+           data_value[i] = each_data[0] 
+        end
+        i += 1
+      end
+      
+      out_file = value[0].sub(".csv","_EMA_long.png")
       gruff_data = Hash.new
       gruff_data["End Value"] = end_value
       gruff_data["High Value"] = high_value
