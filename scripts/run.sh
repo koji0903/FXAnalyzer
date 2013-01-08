@@ -5,5 +5,7 @@
 #
 ###################################################
 ./run_FXAnalyzer.sh
-./run_FXViewer.sh
+if [ $? -eq 0 ] ; then
+    ./run_FXViewer.sh
+fi
 

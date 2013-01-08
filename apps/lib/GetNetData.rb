@@ -40,10 +40,15 @@ class GetNetData
   def get_historical
     print "get HtmlData from #{@domain}/#{@path}\n"
     file_data = Array.new
-    open("http://#{@domain}/#{@path}").each{|f|
-#      file_data << NKF.nkf('-w',f) # change-code to "UTF-8"
-      file_data << f
-    }
+    begin
+      open("http://#{@domain}/#{@path}").each{|f|
+        file_data << f
+      }
+    rescue
+      printf "@E:Cannot Get Historical Data.Please check following URL to access.\n"
+      printf " http://#{@domain}/#{@path}\n"
+      exit 1
+    end
     file_data
   end
 
