@@ -385,6 +385,8 @@ $(function(){
 
 <li><a href="/market/repeat.php">みんなのリピート</a></li>
 
+<li><a href="/market/rates_correlation.php">為替レートと2国間金利差の<br />相関チャート<span style="color:#ffffff; background-color:#C03; text-align:center; margin:0px 4px 3px 0px; width:40px; padding:0px 2px;">NEW</span></a></li>
+
 </ul>
 
 
@@ -674,13 +676,14 @@ $(function(){
 <!--parallax -->
 <script type="text/javascript">
 $(document).ready(function(){
-$("#parallax_win1").jparallax({});
+$("#parallax_fsp1").jparallax({});
 });
 </script>
 
-<div id="parallax_win1">
-<div class="parallax1"><img src="/common/images/images_footer_win01.png" alt="img" class="footer_img1" /></div>
-<div class="parallax2"><img src="/common/images/images_footer_win02_2.png" alt="img" class="footer_img2" /></div>
+<div id="parallax_fsp1">
+<div class="parallax1"><img src="/common/images/images_footer_fsp_01.png" alt="img" class="footer_img1" /></div>
+<div class="parallax2"><img src="/common/images/images_footer_fsp_02.png" alt="img" class="footer_img2" /></div>
+<div class="parallax3"><img src="/common/images/images_footer_fsp_03.png" alt="img" class="footer_img3" /></div>
 </div>
 <!--/parallax -->
 
@@ -733,13 +736,6 @@ Copyright (C) <script type='text/javascript'>myDate = new Date();myYear = myDate
 </script>
 
 <!-- ac cruiser End-->
-<!-- ADNETWORK by RAO リターゲティングタグ配信用 開始 -->
-<script type="text/javascript">
-document.writeln('<sc'+'ript language="JavaScript" type="text/javascript" src="'+location.protocol+'//cdn.c-team.jp/ran/c/money-square/money-square.js"></sc'+'ript>');
-</script>
-<!-- ADNETWORK by RAO リターゲティングタグ配信用 終了 -->
-
-
 <!-- Google Code for market_201109~ Remarketing List -->
 <script type="text/javascript">
 /* <![CDATA[ */
@@ -760,7 +756,11 @@ var google_conversion_value = 0;
 </noscript>
 
 
-<!-- Retargeting 20111212-->
-<!--<script type="text/javascript" src="http://cf.eco-tag.jp/perfx/pix-money-min.js"></script>-->
+<!-- Retargeting 20130206-->
+<script type="text/javascript">
+document.write('<scr' + 'ipt src="'
+             + (document.location.protocol=='https:' ? 'https://www.eco- tag.jp' : 'http://cf.eco-tag.jp')
+             + '/perfx/pix-money-min.js"></scr' + 'ipt>');
+</script>
 </body>
 </html>
