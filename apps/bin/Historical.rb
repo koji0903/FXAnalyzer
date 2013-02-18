@@ -104,7 +104,7 @@ class Historical
                                              trade,
                                              end_value)
         differ = (end_value-turning_value).abs
-     end
+      end
 
       # Save Data to SQL
       begin

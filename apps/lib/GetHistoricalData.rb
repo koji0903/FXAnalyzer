@@ -22,8 +22,11 @@ class GetHistoricalData
     domain = "www.m2j.co.jp"
     printf "Get Historycal Data from M2J(%s)\n",domain
     @historical.each_value{|value|
-      #      path = "/market/histry_dl.php?ccy=#{value[1]}"
-      path = "market/#{value[3]}"
+#      path = "/market/histry_dl.php?ccy=#{value[1]}&type=d"
+      path = "/market/pchistry_dl.php?ccy=#{value[1]}&type=d"
+      
+#      exit
+#      path = "market/#{value[3]}"
       save = "#{@save_dir}/#{value[0]}"
       
       f = open("#{save}","w")

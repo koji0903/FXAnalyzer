@@ -43,7 +43,7 @@ module FXBase
       create table historical (
                                Date TEXT UNIQUE NOT NULL,
                                StartValue REAL NOT NULL,
-                               HighestValue RRAL  NOT NULL,
+                               HighestValue REAL  NOT NULL,
                                LowestValue REAL NOT NULL ,
                                EndValue REAL  NOT NULL,
                                ema12 INTEGER,

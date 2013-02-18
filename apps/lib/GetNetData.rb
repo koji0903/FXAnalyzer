@@ -44,6 +44,8 @@ class GetNetData
       open("http://#{@domain}/#{@path}").each{|f|
         file_data << f
       }
+#      p file_data
+#      exit
     rescue
       printf "@E:Cannot Get Historical Data.Please check following URL to access.\n"
       printf " http://#{@domain}/#{@path}\n"
