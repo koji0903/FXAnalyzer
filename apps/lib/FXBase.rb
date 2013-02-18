@@ -1,21 +1,25 @@
 # -*- coding: utf-8 -*-
 #############################################
 #
-#  FXBase
+#  Setting of FXBase
 #
 #############################################
-module FXBase
-  def get_FXBase
-    # DB path
-    if RUBY_PLATFORM == "i386-mingw32"
-      db_dir = "../../../../FX_DB"
-    else
-#      db_dir = "/home/koji/FX/FX_DB"
-      db_dir = "/home/koji/workspace/FXAnalyzer/db"
-    end
+class FXBase
+  attr_accessor :historical_base_url
+  attr_accessor :db_dir
+  attr_accessor :data_dir
+  attr_accessor :result_dir
+  attr_accessor :db_list
+  attr_accessor :historical_sql
+  def initialize
+    @historical_base_url = get_HistoricalURL
+
+    @db_dir = get_DBDir    
+    @data_dir = get_DataDir
+    @result_dir = get_ResultDir
 
     # Historical Data ["CSVFileName","PHPSelectNumber","DBFileName"]
-    db_list = {
+    @db_list = {
       "USD/JPY" => ["usdjpy.csv",1, "fx_usdjpy.db","USDJPY.csv"],
       "EUR/JPY" => ["eurjpy.csv",2, "fx_eurjpy.db","EURJPY.csv"],
       "EUR/USD" => ["eurusd.csv",3, "fx_eurusd.db","EURUSD.csv"],
@@ -27,54 +31,114 @@ module FXBase
       "GBP/JPY" => ["gbpjpy.csv",6, "fx_gbpjpy.db","GBPJPY.csv"],
       "HKD/JPY" => ["hkdjpy.csv",7, "fx_hkdjpy.db","HKDJPY.csv"],
       "ZAR/JPY" => ["zarjpy.csv",8, "fx_zarjpy.db","ZARJPY.csv"],
-    }
-    return db_dir,db_list
+    }    
 
-  end
-
-  # TurningValue : Trade(Short/Long)が変わる値
-  # ResistanceValue : 抵抗値
-  # EMA12 : [5]
-  # EMA26 : [6]
-  # MACD  : [7]
-  # SIGNAL : [8]
-  def get_HistoricalSQL
-    historical_sql = <<SQL
+    # TurningValue : Trade(Short/Long)が変わる値
+    # ResistanceValue : 抵抗値
+    # EMA12 : [5]
+    # EMA26 : [6]
+    # MACD  : [7]
+    # SIGNAL : [8]
+    @historical_sql = <<SQL
       create table historical (
                                Date TEXT UNIQUE NOT NULL,
                                StartValue REAL NOT NULL,
-                               HighestValue REAL  NOT NULL,
-                               LowestValue REAL NOT NULL ,
+                               HighestValue REAL NOT NULL,
+                               HighestValueDiffer REAL,
+                               LowestValue REAL NOT NULL,
+                               LowestValueDiffer REAL,
                                EndValue REAL  NOT NULL,
+                               EndValueDiffer REAL,
                                ema12 INTEGER,
+                               ema12_direction INTEGER,
                                ema26 INTEGER,
+                               ema26_direction INTEGER,
                                macd  INTEGER,
+                               macd_direction  INTEGER,
                                signal INTEGER,
+                               signal_direction INTEGER,
                                judge INTEGER,
+                               judge_directoin INTEGER,
                                Trade TEXT,
                                TurningValue REAL,
+                               TurningValue_direction INTEGER,
                                Differ REAL,
+                               Differ_direction INTEGER,
                                ResistanceValue INTEGER,
                                ChartFlag INTEGER
                                );
 SQL
-    return historical_sql 
+#                               0 Date TEXT UNIQUE NOT NULL,
+#                               1 StartValue REAL NOT NULL,
+#                               2 HighestValue REAL NOT NULL,
+#                               3 HighestValueDiffer REAL,
+#                               4 LowestValue REAL NOT NULL,
+#                               5 LowestValueDiffer REAL,
+#                               6 EndValue REAL  NOT NULL,
+#                               7 EndValueDiffer REAL,
+#                               8 ema12 INTEGER,
+#                               9 ema12_direction INTEGER,
+#                               10 ema26 INTEGER,
+#                               11 ema26_direction INTEGER,
+#                               12 macd  INTEGER,
+#                               13 macd_direction  INTEGER,
+#                               14 signal INTEGER,
+#                               15 signal_direction INTEGER,
+#                               16 judge INTEGER,
+#                               17 judge_directoin INTEGER,
+#                               18 Trade TEXT,
+#                               19 TurningValue REAL,
+#                               20 TurningValue_direction REAL,
+#                               21 Differ REAL,
+#                               22 Differ_direction REAL,
+#                               23 ResistanceValue INTEGER,
+#                               24 ChartFlag INTEGER
+    
+  end
+  
+  private
+  def get_DBDir
+    # Initial Setting of DB path
+    return get_Dir("../db")
+  end
+  private
+  def get_DataDir
+    # Initial Setting of DB path
+    return get_Dir("../data")
+  end
+  private
+  def get_ResultDir
+    # Initial Setting of DB path
+    return get_Dir("../result")
   end
 
-  def get_ChartSQL
-    chart_sql = <<SQL
-      create table chart (
-                               Date TEXT UNIQUE NOT NULL,
-                               StartValue REAL NOT NULL,
-                               HighestValue RRAL  NOT NULL,
-                               LowestValue REAL NOT NULL ,
-                               EndValue REAL  NOT NULL,
-                               );
-SQL
-    return chart_sql 
+  def get_Dir(path)
+    # Initial Setting of DB path
+    dir = path
+    # Check direcotory
+    unless File::directory?(dir)
+      Dir::mkdir(dir)
+    end
+    # Expand Path
+    dir = File::expand_path(dir)
+    return dir
   end
 
-  module_function :get_FXBase
-  module_function :get_HistoricalSQL
-  module_function :get_ChartSQL
+  def get_HistoricalURL
+#    url = "/market/pchistry_dl.php?ccy=#{num}&type=d"
+    url = "http://www.m2j.co.jp/market/pchistry_dl.php?"
+    # Access Check
+    begin
+      open(url+"ccy=1&type=d")
+    rescue
+      printf "@E:Could not access #{url}\n"
+      exit 1
+    end
+    return url
+  end
+end
+
+if __FILE__ == $0
+  fxbase = FXBase.new
+  pp fxbase
 end

@@ -1,11 +1,13 @@
 #!/bin/sh
-###################################################
-#
-# All Run Shell Script
-#
-###################################################
-./run_FXAnalyzer.sh
-if [ $? -eq 0 ] ; then
-    ./run_FXViewer.sh
-fi
 
+RUBY=ruby
+BASE=../apps
+FX=${BASE}/bin/FX.rb
+
+
+# Execute
+${RUBY} ${FX}
+
+
+# Copy result
+cp -r ../result ~/Dropbox

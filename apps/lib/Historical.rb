@@ -1,48 +1,23 @@
-#!/usr/local/bin/ruby -K
-# -*- coding: utf-8 -*-
-##########################################
-# 
-# Historical
-#  - Get Historical CSV Data from Internet
-#  - Make Historical Database
 #
-##########################################
-$:.concat(["#{File.dirname(__FILE__)}/../lib"])
-require 'common'
-require 'GetHistoricalData'
-require 'sqlite3'
+#
+#
 require 'csv'
-require 'FXBase'
-
 class Historical
-  include FXBase
-  def initialize(db_dir,db_list,tmp_dir="./tmp")
-    @db_dir = db_dir
-    @historical = db_list
-    @tmp_dir = tmp_dir
-    @historical_sql = get_HistoricalSQL
-  end
-  
-  def make_HistoricalDB
-    printf "@I:Make each DB\n"
-    @historical.each{|category,value|
-      printf "@I:Making DB for #{category}\n"
-      db_name = value[2] # db_name
-      db = SQLite3::Database.new("#{@db_dir}/#{db_name}")
-      begin
-        db.execute(@historical_sql)
-      rescue
-        # do nothing
-      end
-      analyze_csv(category,db,"#{@tmp_dir}/#{value[0]}",value[2])
-      db.close
-    }
+  def initialize
   end
 
-  #
-  #
-  #
   def analyze_csv(category,db,csv_file,db_name)
+    pre_HighestValue = 0
+    pre_LowestValue = 0
+    pre_EndValue = 0
+    pre_ema12 = 0
+    pre_ema26 = 0
+    pre_macd = 0
+    pre_signal = 0
+    pre_judge = 0
+    pre_turningvalue = 0
+    pre_differ = 0
+
     ema12_a = Array.new(12,0)
     ema12 = 0
     ema26_a = Array.new(26,0)
@@ -57,11 +32,11 @@ class Historical
     turning_value = 0
     differ = 0
     num = 0
-    open("#{csv_file}").each{|row|
+    open("#{csv_file}").each do |row|
       num += 1
-    }
+    end
     i = 0
-    CSV.foreach("#{csv_file}"){|row|
+    CSV.foreach("#{csv_file}") do |row|
       i += 1
       next if row[0].to_i == 0
       #-----------------------------------
@@ -73,12 +48,12 @@ class Historical
       highest_value = row[2].to_f
       lowest_value = row[3].to_f
       end_value = row[4].to_f
+      
 
       # NEXT if already saved at Date
-#      next if search_saved_data(db,date)
-      
+      #      next if search_saved_data(db,date)      
       target = csv_file.split("/").last.sub(".csv","")
-
+      
       # Analyze Hisotorical Data(EMA12,EMA26,MACD,SIGNAL,JUDGE)
       ema12,ema12_a = cal_ema12(ema12,ema12_a,"#{end_value}") 
       ema26,ema26_a = cal_ema26(ema26,ema26_a,"#{end_value}") 
@@ -104,32 +79,73 @@ class Historical
                                              trade,
                                              end_value)
         differ = (end_value-turning_value).abs
-     end
+      end
 
       # Save Data to SQL
       begin
+        highest_value_differ = highest_value - pre_HighestValue
+        lowest_value_differ = lowest_value - pre_LowestValue
+        end_value_differ = end_value - pre_EndValue
+        ema12_direction = ema12 - pre_ema12
+        ema26_direction = ema26 - pre_ema26
+        macd_direction = macd - pre_macd
+        signal_direction = signal - pre_signal
+        judge_direction = judge - pre_judge
+        turningvalue_direction = turning_value - pre_turningvalue
+        differ_direction = differ - pre_differ
         sql = "insert into historical values ('#{date}',
                                                #{start_value},
                                                #{highest_value},
+                                               #{highest_value_differ},
                                                #{lowest_value},
+                                               #{lowest_value_differ},
                                                #{end_value},
+                                               #{end_value_differ},
                                                #{ema12},
+                                               #{ema12_direction},
                                                #{ema26},
+                                               #{ema26_direction},
                                                #{macd},
+                                               #{macd_direction},
                                                #{signal},
+                                               #{signal_direction},
                                                #{judge},
+                                               #{judge_direction},
                                                '#{trade}',
                                                #{turning_value},
+                                               #{turningvalue_direction},
                                                #{differ},
+                                               #{differ_direction},
                                                #{resistance_value},
                                                0
                                               )"
         db.execute(sql)
         printf("\tAdd Historical data at %s to %s(trade:%s)\n",date,db_name,trade)
       rescue
-        # Skip.Already Saved.
+#        printf "Already saved\n"
       end
-    }
+
+      pre_HighestValue = highest_value
+      pre_LowestValue = lowest_value
+      pre_EndValue = end_value
+      pre_ema12 = ema12
+      pre_ema26 = ema26
+      pre_macd = macd
+      pre_signal = signal
+      pre_turningvalue = turning_value
+      pre_differ = differ
+
+    end
+  end
+
+  def direction(a,b)
+    if a == b
+      return "save"
+    elsif a > b
+      return "up"
+    else
+      return "down"
+    end
   end
 
   #
@@ -280,17 +296,4 @@ class Historical
     end
   end
 
-  def main
-    # Get Historiclal CSV Data from Internet
-    printf "@I:Get Historical Data and save #{@tmp_dir}\n"
-    GetHistoricalData.new(@historical,@tmp_dir).main
-    # Make DataBase and Save
-    make_HistoricalDB
-  end
-
-end
-
-if __FILE__ == $0
-  historical = Historical.new
-  historical.main
 end
