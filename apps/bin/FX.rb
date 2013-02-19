@@ -4,7 +4,8 @@
 #  FX
 #
 #############################################
-$:.unshift("../apps/lib")
+$:.unshift(File.dirname(__FILE__) + "/../lib")
+$:.unshift(File.dirname(__FILE__) + "/../bin")
 require "common"
 require "FXBase"
 require "Viewer"
@@ -27,7 +28,7 @@ class FX
     printf "@I:Get Historical Data from #{@fx_base.historical_base_url}\n"
     @fx_base.db_list.each do |key,value|
       url = @fx_base.historical_base_url + "ccy=" + value[1].to_s + "&type=d"
-      file = @fx_base.data_dir + "/" + value[0]
+      file = @fx_base.data_dir + "/" + value[3]
       printf "[#{key}]Get Historical Data from #{url} ... "
       @CSVFiles[key] = file
       f = open(file,"w")
@@ -68,18 +69,19 @@ class FX
     viewer = Viewer.new(@fx_base.result_dir,@fx_base.db_dir,@fx_base.db_list)
     printf "@I:Generate Historical Data to TXT\n"
     viewer.generate_TechnicalData
-    printf "@I:Generate Histrrical Data to CSV\n"
-    viewer.generate_CSV
-    printf "@I:Generate Analyzed Data to CSC\n"
+    printf "@I:Generate Histrrical Data to Excel\n"
+    viewer.generate_Excel
+#    printf "@I:Generate Analyzed Data to CSV\n"
 #    viewer.generate_Trade
-    printf "@I:Generate Graph\n"
-    viewer.generate_Graph
+#    printf "@I:Generate Graph\n"
+#    viewer.generate_Graph
   end
 
   #
   # Main Operation
   #
   def main
+    Common.print_base
     printf "@I:Start FX Analyze\n"
     # Get Historical Data from WEB
     get_HistoricalData
@@ -87,6 +89,7 @@ class FX
     make_HistoricalDB
     # generate
     generate
+    Common.print_summary
   end
 end
 

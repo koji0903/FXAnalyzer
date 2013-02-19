@@ -7,6 +7,7 @@ class Historical
   end
 
   def analyze_csv(category,db,csv_file,db_name)
+    pre_StartValue = 0
     pre_HighestValue = 0
     pre_LowestValue = 0
     pre_EndValue = 0
@@ -36,7 +37,12 @@ class Historical
       num += 1
     end
     i = 0
-    CSV.foreach("#{csv_file}") do |row|
+    open("#{csv_file}").each do |line|
+      begin
+        row = line.split(",")
+      rescue
+        next
+      end
       i += 1
       next if row[0].to_i == 0
       #-----------------------------------
@@ -83,6 +89,7 @@ class Historical
 
       # Save Data to SQL
       begin
+        start_value_differ = start_value - pre_StartValue
         highest_value_differ = highest_value - pre_HighestValue
         lowest_value_differ = lowest_value - pre_LowestValue
         end_value_differ = end_value - pre_EndValue
@@ -95,6 +102,7 @@ class Historical
         differ_direction = differ - pre_differ
         sql = "insert into historical values ('#{date}',
                                                #{start_value},
+                                               #{start_value_differ},
                                                #{highest_value},
                                                #{highest_value_differ},
                                                #{lowest_value},
@@ -125,6 +133,7 @@ class Historical
 #        printf "Already saved\n"
       end
 
+      pre_StartValue = start_value
       pre_HighestValue = highest_value
       pre_LowestValue = lowest_value
       pre_EndValue = end_value
@@ -134,6 +143,7 @@ class Historical
       pre_signal = signal
       pre_turningvalue = turning_value
       pre_differ = differ
+      pre_judge = judge
 
     end
   end
