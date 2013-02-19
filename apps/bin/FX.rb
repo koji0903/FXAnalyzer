@@ -52,7 +52,7 @@ class FX
   def make_HistoricalDB
     printf "\n@I:Make Historical DB\n"
     @fx_base.db_list.each do |key,value|
-      printf "\tMaking DB for #{key}\n"
+      printf " - Making DB for #{key}\n"
       db_name = value[2]
       db = SQLite3::Database.new("#{@fx_base.db_dir}/#{db_name}")
       begin

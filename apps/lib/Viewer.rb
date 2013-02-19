@@ -66,28 +66,15 @@ class Viewer
     cell_green = set_cell(sheet,:green,:thin)
     cell_magenta = set_cell(sheet,:magenta,:thin)
     cell_cyan = set_cell(sheet,:cyan,:thin)
+    cell_yellow = set_cell(sheet,:yellow,:thin)
     cell_white = set_cell(sheet,:white,:thin)
     cell_pure_white = set_cell(sheet,:white)
 
     # Header
-    sheet[0,0] = "Date"
-    sheet[0,1] = "Start Value"
-    sheet[0,2] = "Highest Value"
-    sheet[0,3] = "Lowest Value"
-    sheet[0,4] = "End Value"
-    sheet[0,5] = "EMA12"
-    sheet[0,6] = "EMA26"
-    sheet[0,7] = "MACD"
-    sheet[0,8] = "Signal"
-    sheet[0,9] = "Judge"
-    sheet[0,10] = "Trade"
-    sheet[0,11] = "Turning Value"
-    sheet[0,12] = "Differ"
-    sheet[0,13] = "Registance"
-    for i in 0..13
-      sheet.row(0).set_format(i, cell_green)
-      sheet.column(i).width = sheet[0,i].to_s.size
-    end
+    print_Header(0,sheet,cell_green)
+
+    offset = 0
+    month = nil
 
     if length.nil?
       sql = "SELECT * FROM #{table};"
@@ -97,42 +84,69 @@ class Viewer
     db.execute("#{sql}").sort_by{|row|
       row[0]
     }.each_with_index{|row,j|
+      if month != row[0].split("-")[1]
+        print_Header(j+offset,sheet,cell_green)
+        offset += 1
+      end
+      month = row[0].split("-")[1]
+
       row.each_with_index{|column,i|
         if column.class == Float
           column = column.round(num)
         end
         case i          
         when 0 # Date
-          row_index = j+1
+          row_index = j+offset
           column_index = i
-          sheet[j+1,column_index] = column
+          sheet[row_index,column_index] = column
           set_data_width(sheet,row_index,column_index,column,cell_white)
-        when 1,3,5,7,9,11,13,15,17,20,22
+        when 1,3,5,7,9,11,13,15,17
           # Start Value
           # Highest Value
           # Lowest Value
-          row_index = j+1
+          row_index = j+offset
           column_index = i/2+1
-          sheet[j+1,column_index] = column
+          sheet[row_index,column_index] = column
           if row[i+1] > 0
             set_data_width(sheet,row_index,column_index,column,cell_cyan)
           else
             set_data_width(sheet,row_index,column_index,column,cell_magenta)
           end
         when 19
-          row_index = j+1
+          row_index = j+offset
           column_index = i/2+1
-          sheet[j+1,column_index] = column
+          sheet[row_index,column_index] = column
           if column == "Long"
             set_data_width(sheet,row_index,column_index,column,cell_cyan)
           else
             set_data_width(sheet,row_index,column_index,column,cell_magenta)
           end
+        when 20
+          # Turning Value
+          row_index = j+offset
+          column_index = i/2+1
+          sheet[row_index,column_index] = column
+          set_data_width(sheet,row_index,column_index,column,cell_white)
+        when 22
+          # Differ
+          row_index = j+offset
+          column_index = i/2+1
+          sheet[row_index,column_index] = column
+          if num == 6 #USD/EUR ...
+            near = 0.005
+          else
+            near = 0.5
+          end
+          if column < near
+            set_data_width(sheet,row_index,column_index,column,cell_yellow)
+          else
+            set_data_width(sheet,row_index,column_index,column,cell_white)
+          end
         when 24
           # Registance Value
-          row_index = j+1
+          row_index = j+offset
           column_index = i/2+1
-          sheet[j+1,column_index] = column
+          sheet[row_index,column_index] = column
           if column.to_i == 0
             set_data_width(sheet,row_index,column_index,column,cell_white)
           else
@@ -143,6 +157,27 @@ class Viewer
       }
     }
     book.write(file)
+  end
+
+  def print_Header(num,sheet,cell)
+    sheet[num,0] = "Date"
+    sheet[num,1] = "Start Value"
+    sheet[num,2] = "Highest Value"
+    sheet[num,3] = "Lowest Value"
+    sheet[num,4] = "End Value"
+    sheet[num,5] = "EMA12"
+    sheet[num,6] = "EMA26"
+    sheet[num,7] = "MACD"
+    sheet[num,8] = "Signal"
+    sheet[num,9] = "Judge"
+    sheet[num,10] = "Trade"
+    sheet[num,11] = "Turning Value"
+    sheet[num,12] = "Differ"
+    sheet[num,13] = "Registance"
+    for i in 0..13
+      sheet.row(num).set_format(i, cell)
+      sheet.column(i).width = sheet[num,i].to_s.size
+    end
   end
 
   def set_data_width(sheet,row_index,column_index,column,collor)
@@ -174,7 +209,7 @@ class Viewer
     data.sort_by{|each_data|
       each_data[0]
     }.each{|each_data|
-      case each_data[18]
+      case each_data[19]
       when "Long"
         judge = "買"
       when "Short"
