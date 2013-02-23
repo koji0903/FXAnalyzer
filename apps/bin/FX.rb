@@ -9,6 +9,7 @@ $:.unshift(File.dirname(__FILE__) + "/../bin")
 require "common"
 require "FXBase"
 require "Viewer"
+require "Graph"
 require "Historical"
 require 'sqlite3'
 
@@ -70,11 +71,11 @@ class FX
     printf "@I:Generate Historical Data to TXT\n"
     viewer.generate_TechnicalData
     printf "@I:Generate Histrrical Data to Excel\n"
-    viewer.generate_Excel
+#    viewer.generate_Excel
 #    printf "@I:Generate Analyzed Data to CSV\n"
 #    viewer.generate_Trade
-#    printf "@I:Generate Graph\n"
-#    viewer.generate_Graph
+    printf "@I:Generate Graph\n"
+    viewer.generate_Graph
   end
 
   #
