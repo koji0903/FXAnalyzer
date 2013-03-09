@@ -63,7 +63,7 @@ class FX
       @historical.analyze_csv(key,db,@CSVFiles[key],db_name)
       db.close
     end
-    
+
   end
 
   def generate
@@ -74,8 +74,8 @@ class FX
     viewer.generate_Excel
 #    printf "@I:Generate Analyzed Data to CSV\n"
 #    viewer.generate_Trade
-    printf "@I:Generate Graph\n"
-    viewer.generate_Graph
+###    printf "@I:Generate Graph\n"
+###    viewer.generate_Graph
   end
 
   #

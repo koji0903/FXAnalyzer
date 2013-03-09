@@ -1,0 +1,2 @@
+ruby FX.rb
+pause

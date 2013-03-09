@@ -14,9 +14,16 @@ class FXBase
   def initialize
     @historical_base_url = get_HistoricalURL
 
-    @db_dir = get_DBDir    
+    @base_path = File.dirname($0)
+
+    if @base_path == "."
+      @base_path = "../"
+    end
+    
+    @db_dir = get_DBDir
     @data_dir = get_DataDir
     @result_dir = get_ResultDir
+
 
     # Historical Data ["CSVFileName","PHPSelectNumber","DBFileName"]
     @db_list = {
@@ -31,7 +38,7 @@ class FXBase
       "GBP/JPY" => ["gbpjpy.xls",6, "fx_gbpjpy.db","GBPJPY.csv"],
       "HKD/JPY" => ["hkdjpy.xls",7, "fx_hkdjpy.db","HKDJPY.csv"],
       "ZAR/JPY" => ["zarjpy.xls",8, "fx_zarjpy.db","ZARJPY.csv"],
-    }    
+    }
 
     # TurningValue : Trade(Short/Long)が変わる値
     # ResistanceValue : 抵抗値
@@ -95,23 +102,23 @@ SQL
 #                               23 Differ_direction REAL,
 #                               24 ResistanceValue INTEGER,
 #                               25 ChartFlag INTEGER
-    
+
   end
-  
+
   private
   def get_DBDir
     # Initial Setting of DB path
-    return get_Dir("../db")
+    return get_Dir("#{@base_path}/../db")
   end
   private
   def get_DataDir
     # Initial Setting of DB path
-    return get_Dir("../data")
+    return get_Dir("#{@base_path}/../data")
   end
   private
   def get_ResultDir
     # Initial Setting of DB path
-    return get_Dir("../result")
+    return get_Dir("#{@base_path}/../result")
   end
 
   def get_Dir(path)

@@ -54,15 +54,15 @@ class Historical
       highest_value = row[2].to_f
       lowest_value = row[3].to_f
       end_value = row[4].to_f
-      
+
 
       # NEXT if already saved at Date
-      #      next if search_saved_data(db,date)      
+      #      next if search_saved_data(db,date)
       target = csv_file.split("/").last.sub(".csv","")
-      
+
       # Analyze Hisotorical Data(EMA12,EMA26,MACD,SIGNAL,JUDGE)
-      ema12,ema12_a = cal_ema12(ema12,ema12_a,"#{end_value}") 
-      ema26,ema26_a = cal_ema26(ema26,ema26_a,"#{end_value}") 
+      ema12,ema12_a = cal_ema12(ema12,ema12_a,"#{end_value}")
+      ema26,ema26_a = cal_ema26(ema26,ema26_a,"#{end_value}")
       macd = ema12 - ema26 if ema12 != 0 && ema26 != 0
       resistance_value = cal_resistance(target,ema12, ema26)if (ema12 != 0 && ema26 != 0)
       signal,signal_a = cal_signal(signal,signal_a,macd) if macd != 0
@@ -70,7 +70,7 @@ class Historical
       if judge > 0; trade = "Long"; else trade = "Short"; end
 
       # Calucurate Next Turning Value
-      if num - 10 < i
+#      if num - 10 < i
         turning_value = cal_NextTurningValue(target,
                                              end_value,
                                              ema12_a,
@@ -85,7 +85,7 @@ class Historical
                                              trade,
                                              end_value)
         differ = (end_value-turning_value).abs
-      end
+#      end
 
       # Save Data to SQL
       begin
@@ -170,7 +170,7 @@ class Historical
     else
       change_value = 0.01
     end
-    
+
     case trade
     when "Long"
       end_value = end_value - change_value
@@ -186,9 +186,9 @@ class Historical
     cal_NextTurningValue(target,end_value,ema12_a,ema12,ema26_a,ema26,macd,signal_a,signal,judge,trade,next_trade)
   end
 
-  def cal_eachValue(end_value,ema12_a,ema12,ema26_a,ema26,macd,signal_a,signal,judge,trade)      
-    ema12,ema12_a = cal_ema12(ema12,ema12_a,"#{end_value}") 
-    ema26,ema26_a = cal_ema26(ema26,ema26_a,"#{end_value}") 
+  def cal_eachValue(end_value,ema12_a,ema12,ema26_a,ema26,macd,signal_a,signal,judge,trade)
+    ema12,ema12_a = cal_ema12(ema12,ema12_a,"#{end_value}")
+    ema26,ema26_a = cal_ema26(ema26,ema26_a,"#{end_value}")
     macd = ema12 - ema26 if ema12 != 0 && ema26 != 0
     signal,signal_a = cal_signal(signal,signal_a,macd) if macd != 0
     judge = macd - signal if macd != 0 && signal != 0
@@ -196,7 +196,7 @@ class Historical
     if judge > 0; next_trade = "Long"; else next_trade = "Short"; end
     return next_trade
   end
-  
+
   #
   # Calucurate Resistance Value
   #  - ema12 and ema26 is very near
@@ -219,12 +219,12 @@ class Historical
 
   #
   # Search matching Date
-  # 
+  #
   def search_saved_data(db,date)
     sql = "SELECT Date FROM historical WHERE Date = '#{date}';"
     if db.execute(sql).size != 0
       true
-    else 
+    else
       false
     end
   end
@@ -242,7 +242,7 @@ class Historical
         sum += ema12_a[i].to_f
       }
       if ema12_a[0] != 0
-        ema12 = (sum/12).to_f 
+        ema12 = (sum/12).to_f
       else
         ema12 = 0
       end
@@ -269,7 +269,7 @@ class Historical
         sum += ema26_a[i].to_f
       }
       if ema26_a[0] != 0
-        ema26 = (sum/26).to_f 
+        ema26 = (sum/26).to_f
       else
         ema26 = 0
       end
@@ -294,7 +294,7 @@ class Historical
         sum += signal_a[i].to_f
       }
       if signal_a[0] != 0
-        signal = (sum/9).to_f 
+        signal = (sum/9).to_f
       else
         signal = 0
       end

@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'gruff'
+#require 'gruff'
 
 class MyGraph
   def initialize(inf)
@@ -7,14 +7,14 @@ class MyGraph
     @out_file = inf[:result_dir] + "/img/" + inf[:file]
     # The title of Graph
     @Title = inf[:title]
-    
+
     @Data = inf[:data] # Expect Hash data (category => data(array))
     @Label = inf[:label]
 
     @g = Gruff::Line.new('1280x960')
 #    @g = Gruff::Line.new
-    @g.title = "#{@Title}" 
-    
+    @g.title = "#{@Title}"
+
      # Graph Setting
     case @Title
     when "AUD/USD","EUR/USD","NZD/USD"
@@ -35,19 +35,19 @@ class MyGraph
   @g.legend_font_size = 8
   @g.title_font_size = 12
   @g.hide_dots = true
- 
+
   end
-  
+
   def add_data
     @Data.each do |category,each_data|
       @g.data("#{category}",each_data)
     end
   end
-  
+
   def add_title
     @g.labels = @Label
   end
-  
+
   def generate
     printf("@I:generate %s\n",@out_file)
     begin
