@@ -1,5 +1,6 @@
 require 'rubygems'
-#require 'gruff'
+require 'gruff'
+require 'pp'
 
 class MyGraph
   def initialize(inf)

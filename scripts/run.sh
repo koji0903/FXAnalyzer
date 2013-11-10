@@ -1,8 +1,8 @@
 #!/bin/sh
 
 RUBY=/Users/koji/.rbenv/versions/1.9.3-p448/bin/ruby
-BASE=../apps
+BASE=/Users/koji/workspace/FXAnalyzer/apps
 FX=${BASE}/bin/FX.rb
 
 ${RUBY} ${FX}
-cp -r ../apps/result ~/Dropbox
+cp -r ${BASE}/result ~/Dropbox

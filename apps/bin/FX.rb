@@ -72,10 +72,8 @@ class FX
     viewer.generate_TechnicalData
     printf "@I:Generate Histrrical Data to Excel\n"
     viewer.generate_Excel
-#    printf "@I:Generate Analyzed Data to CSV\n"
-#    viewer.generate_Trade
-###    printf "@I:Generate Graph\n"
-###    viewer.generate_Graph
+    printf "@I:Generate Graph\n"
+    viewer.generate_Graph
   end
 
   #
@@ -88,7 +86,6 @@ class FX
     get_HistoricalData
     # Make Historical DataBase
     make_HistoricalDB
-    # generate
     generate
     Common.print_summary
   end
