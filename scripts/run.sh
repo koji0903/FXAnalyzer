@@ -1,6 +1,6 @@
 #!/bin/sh
 
-RUBY=ruby
+RUBY=/Users/koji/.rbenv/versions/1.9.3-p448/bin/ruby
 BASE=../apps
 FX=${BASE}/bin/FX.rb
 

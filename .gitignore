@@ -5,3 +5,10 @@
 *.png
 *.html
 *.*~
+result/*
+data/*
+db/*
+apps/result/*
+apps/data/*
+apps/db/*
+
