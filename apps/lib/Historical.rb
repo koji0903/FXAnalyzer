@@ -70,7 +70,7 @@ class Historical
       if judge > 0; trade = "Long"; else trade = "Short"; end
 
       # Calucurate Next Turning Value
-#      if num - 10 < i
+      if num - 10 < i
         turning_value = cal_NextTurningValue(target,
                                              end_value,
                                              ema12_a,
@@ -85,7 +85,7 @@ class Historical
                                              trade,
                                              end_value)
         differ = (end_value-turning_value).abs
-#      end
+      end
 
       # Save Data to SQL
       begin

@@ -5,4 +5,4 @@ BASE=../apps
 FX=${BASE}/bin/FX.rb
 
 ${RUBY} ${FX}
-cp -r ../result ~/Dropbox
+cp -r ../apps/result ~/Dropbox
