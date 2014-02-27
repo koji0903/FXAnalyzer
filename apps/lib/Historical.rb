@@ -19,7 +19,7 @@ class Historical
     pre_turningvalue = 0
     pre_differ = 0
 
-    ema12_a = Array.new(12,0)
+    ema12_a = Array.new(12,0) 
     ema12 = 0
     ema26_a = Array.new(26,0)
     ema26 = 0
@@ -164,7 +164,7 @@ class Historical
   def cal_NextTurningValue(target,end_value,ema12_a,ema12,ema26_a,ema26,macd,signal_a,signal,judge,trade,next_trade,org=nil)
     next_trade = nil
     change_value = 0.0
-    case target
+    case target.downcase
     when "eurusd", "audusd", "nzdusd"
       change_value = 0.0001
     else
